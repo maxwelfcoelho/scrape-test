@@ -2,6 +2,12 @@ const { JSDOM } = require("jsdom");
 
 const Product = require("../models/product");
 
+// this function extracts the products of the given html (in this case amazon)
+// I choose to make it to receive the html as a parameter, because it make easier to unit test the code.
+// I also use functions to get each field, so if in the future amazon changes the html structure, I find it easier
+// to make changes or even handle errors, etc.
+// I choose to not throw an error if the html structure is not as expected, but instead a give default values
+// (usually empty string for strings and zero for numbers)
 function scrapeProducts(html) {
     const dom = new JSDOM(html);
 
